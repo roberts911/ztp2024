@@ -13,7 +13,7 @@ jobs:
     strategy:
       max-parallel: 4
       matrix:
-        python-version: [3.10, 3.11]
+        python-version: ["3.10", "3.11"]
 
     steps:
     - uses: actions/checkout@v4
@@ -27,4 +27,4 @@ jobs:
         pip install -r szu/requirements.txt
     - name: Run Tests
       run: |
-        python manage.py test
+        python szu/manage.py test
