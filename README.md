@@ -34,6 +34,12 @@ cd ztp2024
 git reset
 git pull
 ```
+
+## Instalacja zależności
+```
+pip install -r szu/requirements.txt
+```
+
 ## Odpalenie bazy PostgreSQL na dockerze
 ```
 docker run --name postgres -e POSTGRES_PASSWORD=qwerty -e POSTGRES_DB=ztp2024 -p 5432:5432 -d postgres
