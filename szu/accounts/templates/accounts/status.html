@@ -1,0 +1,27 @@
+{% extends "accounts/base.html" %}
+
+{% block title %}Status{% endblock %}
+
+{% block content %}
+<h1 class="mt-5">Application Status</h1>
+{% if not request.user.is_staff %}
+    <div class="alert alert-warning" role="alert">
+        You do not have permission to approve applications.
+    </div>
+{% endif %}
+<ul class="list-group mt-3">
+    {% for collaborator in collaborators %}
+        <li class="list-group-item d-flex justify-content-between align-items-center">
+            <div>
+                <strong>{{ collaborator.name }}</strong> - {{ collaborator.status }}
+                {% if collaborator.status == 'Approved' %}
+                    - {{ collaborator.api_key }}
+                {% endif %}
+            </div>
+            {% if collaborator.status == 'Pending' and request.user.is_staff %}
+                <a href="{% url 'approve' collaborator.nip %}" class="btn btn-success btn-sm">Approve</a>
+            {% endif %}
+        </li>
+    {% endfor %}
+</ul>
+{% endblock %}
